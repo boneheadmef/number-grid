@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Number Grid</title>
+
+
+<style>
+
+    body {
+
+        margin: 0;
+
+        min-height: 100vh;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+
+        background: white;
+
+        font-family: Arial, sans-serif;
+
+    }
+
+
+    #grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(10, 60px);
+
+        grid-template-rows: repeat(10, 60px);
+
+        border: 2px solid black;
+
+    }
+
+
+    .cell {
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        background: white;
+
+        color: black;
+
+        border: 1px solid black;
+
+        font-size: 24px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        user-select: none;
+
+    }
+
+
+    .cell.inverted {
+
+        background: black;
+
+        color: white;
+
+    }
+
+
+    .cell:hover {
+
+        outline: 3px solid gray;
+
+        outline-offset: -3px;
+
+    }
+
+
+    #reset {
+
+        margin-top: 20px;
+
+        padding: 10px 24px;
+
+        font-size: 18px;
+
+        cursor: pointer;
+
+        background: white;
+
+        color: black;
+
+        border: 2px solid black;
+
+        border-radius: 4px;
+
+    }
+
+
+    #reset:hover {
+
+        background: black;
+
+        color: white;
+
+    }
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="grid"></div>
+
+
+<button id="reset">Reset</button>
+
+
+<script>
+
+    const grid = document.getElementById("grid");
+
+    const reset = document.getElementById("reset");
+
+
+    // Create the 100 cells
+
+    for (let n = 1; n <= 100; n++) {
+
+        const cell = document.createElement("div");
+
+        cell.className = "cell";
+
+        cell.textContent = n;
+
+
+        cell.addEventListener("click", () => {
+
+            cell.classList.toggle("inverted");
+
+        });
+
+
+        grid.appendChild(cell);
+
+    }
+
+
+    // Reset all cells to white
+
+    reset.addEventListener("click", () => {
+
+        document.querySelectorAll(".cell").forEach(cell => {
+
+            cell.classList.remove("inverted");
+
+        });
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
